@@ -5,7 +5,6 @@ namespace MauiAppMinhasCompras.Models
     public class Produto
     {
         string _descricao;
-        double _quantidade;
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
