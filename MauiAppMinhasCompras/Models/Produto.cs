@@ -1,10 +1,13 @@
 ﻿using SQLite;
+using System.ComponentModel;
 
 namespace MauiAppMinhasCompras.Models
 {
     public class Produto
     {
         string _descricao;
+        DateTime _dataCadastro;
+
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -24,5 +27,22 @@ namespace MauiAppMinhasCompras.Models
         public double Preco { get; set; }
         public double Total { get => Quantidade * Preco; }
 
+        public DateTime DataCadastro
+        {
+            get => _dataCadastro;
+            set
+            {
+                _dataCadastro = value;
+                OnPropertyChanged(nameof(DataCadastro));
+            }
+
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
+
 }
